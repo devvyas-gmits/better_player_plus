@@ -1,8 +1,11 @@
 # Streamit patches to better_player_plus
 
-This is a private copy of [SunnatilloShavkatov/better_player_plus](https://github.com/SunnatilloShavkatov/better_player_plus)
+This is a public copy of [SunnatilloShavkatov/better_player_plus](https://github.com/SunnatilloShavkatov/better_player_plus)
 (Apache-2.0). It exists to carry the patches below until upstream has them. The app uses it as a git dependency
-(`streamit-mobile/pubspec.yaml`), pinned to a tag.
+(`streamit-mobile/pubspec.yaml`), pinned to a tag, so no credentials are needed to fetch it.
+
+It is a standalone repository, not a GitHub fork, so there is no "Sync fork" button: new upstream versions are pulled
+with git, as described at the end.
 
 Branches and tags:
 
