@@ -504,6 +504,16 @@ internal class BetterPlayer(
             }
 
             override fun onIsPlayingChanged(isPlaying: Boolean) {
+                // STREAMIT PATCH (see PATCHES.md): a stall is not a pause. ExoPlayer reports
+                // isPlaying = false while it rebuffers even though playWhenReady is still true. Sending
+                // "pause" made the Dart side really pause the player, which then never resumed. The
+                // BUFFERING state already sends bufferingStart/bufferingEnd, and isPlaying turns true
+                // again by itself once data arrives.
+                val player = exoPlayer
+                if (!isPlaying && player != null && player.playWhenReady &&
+                    player.playbackState == Player.STATE_BUFFERING) {
+                    return
+                }
                 // Catches play/pause state changes triggered natively (e.g. the
                 // media notification's PlayerNotificationManager controls the
                 // ExoPlayer instance directly), which otherwise never reach Dart.
